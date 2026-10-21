@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Karthik Kumar Reddy V</title>
   <meta name="description" content="Senior SRE in Bengaluru. Kubernetes, AWS, Terraform, and reliability engineering.">
-  <meta name="theme-color" content="#0b0d0c">
+  <meta name="theme-color" content="#111310">
   <link rel="canonical" href="https://karthikvkreddy.github.io/">
   <meta property="og:title" content="Karthik Kumar Reddy V">
   <meta property="og:description" content="Senior SRE in Bengaluru. Kubernetes, AWS, Terraform, and reliability engineering.">
@@ -13,452 +13,224 @@
   <meta property="og:url" content="https://karthikvkreddy.github.io/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:opsz,wght@9..144,520;9..144,640&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #0b0d0c;
-      --panel: #121614;
-      --line: #2a332c;
-      --mute: #9aa89a;
-      --text: #e8eee6;
-      --amber: #e3b341;
-      --amber-dim: #c4922a;
-      --ok: #8fbf7a;
+      --bg: #111310;
+      --text: #eceae4;
+      --mute: #8d9288;
+      --line: #2a2d27;
+      --link: #c9a45a;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      background: var(--ink);
+      background: var(--bg);
       color: var(--text);
       font-family: "IBM Plex Sans", system-ui, sans-serif;
-      line-height: 1.5;
-      min-height: 100vh;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(227,179,65,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(227,179,65,.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at 20% 0%, #000 20%, transparent 70%);
-      z-index: 0;
-    }
-    .scan {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 120px;
-      pointer-events: none;
-      background: linear-gradient(to bottom, transparent, rgba(227,179,65,.07), transparent);
-      animation: sweep 7s linear infinite;
-      z-index: 1;
-    }
-    @keyframes sweep {
-      from { transform: translateY(-20vh); }
-      to { transform: translateY(120vh); }
+      font-size: 17px;
+      line-height: 1.65;
     }
     .wrap {
-      position: relative;
-      z-index: 2;
-      max-width: 920px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 28px 22px 80px;
+      padding: 48px 24px 96px;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 56px;
+      margin-bottom: 64px;
     }
     .brand {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: var(--amber);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .02em;
     }
-    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
     nav a {
       color: var(--mute);
       text-decoration: none;
-      font-size: 14px;
+      font-size: 15px;
     }
     nav a:hover { color: var(--text); }
     .kicker {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin: 0 0 18px;
-    }
-    .kicker img {
-      height: 22px;
-      width: 22px;
-      vertical-align: -5px;
-      margin-left: 8px;
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr minmax(150px, 230px);
-      gap: 28px;
-      align-items: center;
-    }
-    .hero-radar {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: #070807;
-    }
-    @media (max-width: 700px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-radar { max-width: 200px; }
+      margin: 0 0 12px;
+      color: var(--mute);
+      font-size: 14px;
+      letter-spacing: .04em;
     }
     h1 {
       font-family: "Fraunces", Georgia, serif;
-      font-weight: 640;
-      font-size: clamp(2.1rem, 6vw, 4.1rem);
-      line-height: 1.08;
-      letter-spacing: -.03em;
-      margin: 0 0 22px;
-      max-width: 14ch;
+      font-weight: 600;
+      font-size: clamp(1.75rem, 4.5vw, 2.35rem);
+      line-height: 1.3;
+      letter-spacing: -.02em;
+      margin: 0 0 20px;
     }
     .lede {
-      font-size: 1.15rem;
+      margin: 0;
       color: var(--mute);
-      max-width: 42rem;
-      margin: 0 0 28px;
     }
     .lede strong { color: var(--text); font-weight: 500; }
-    .cta { display: flex; gap: 12px; flex-wrap: wrap; }
-    a.btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 16px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      border: 1px solid transparent;
+    section {
+      margin-top: 56px;
+      padding-top: 56px;
+      border-top: 1px solid var(--line);
     }
-    a.btn.primary {
-      background: var(--amber);
-      color: #16140c;
-    }
-    a.btn.ghost {
-      border-color: var(--line);
-      color: var(--text);
-      background: transparent;
-    }
-    a.btn.ghost:hover { border-color: var(--amber); color: var(--amber); }
-    section { margin-top: 72px; }
     h2 {
       font-family: "Fraunces", Georgia, serif;
-      font-size: 1.7rem;
-      font-weight: 520;
-      margin: 0 0 18px;
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin: 0 0 28px;
     }
-    .h2-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .item + .item {
+      margin-top: 32px;
     }
-    .h2-row img { height: 40px; width: auto; }
-    .work-block + .work-block { margin-top: 16px; }
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 12px;
+    .item h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 500;
     }
-    a.cert, .cert {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      text-decoration: none;
-      color: inherit;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-    }
-    a.cert:hover { border-color: var(--amber); }
-    .cert-mark {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      letter-spacing: .04em;
-      min-width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
-    .cert-mark.k8s { background: #326ce5; color: #fff; }
-    .cert-mark.aws { background: #ff9900; color: #16140c; }
-    .cert h3 { margin: 0 0 4px; font-size: 15px; }
-    .cert p { margin: 0; color: var(--mute); font-size: 13px; }
-    .more { margin-top: 14px; }
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 22px;
-    }
-    .product-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .product-head h3 {
+    .item p {
       margin: 0;
-      font-size: 1.2rem;
-    }
-    .panel > p {
       color: var(--mute);
+    }
+    .links {
       margin: 10px 0 0;
-      max-width: 46rem;
-    }
-    .tag {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: var(--ok);
-      padding: 4px 8px;
-      border-radius: 999px;
-      flex-shrink: 0;
-    }
-    pre {
-      margin: 18px 0 0;
-      padding: 14px 16px;
-      overflow-x: auto;
-      background: #0a0c0b;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: #d7e3cf;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-    }
-    .card h3 {
-      margin: 0 0 6px;
+      color: var(--mute);
       font-size: 15px;
     }
-    .card p {
-      margin: 0;
-      color: var(--mute);
-      font-size: 14px;
+    a {
+      color: var(--link);
+      text-decoration: none;
     }
-    .note {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-left: 3px solid var(--amber);
-      color: var(--mute);
-      font-size: 14px;
-    }
-    .note strong { color: var(--text); }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    a:hover { text-decoration: underline; }
+    .list {
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .chips li {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      color: var(--text);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 6px 10px;
-    }
-    .chips a { color: inherit; text-decoration: none; }
-    .chips a:hover { color: var(--amber); }
-    .about p { color: var(--mute); max-width: 42rem; }
-    .about p strong { color: var(--text); font-weight: 500; }
-    footer {
-      margin-top: 80px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
+    .list li {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 16px;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
       color: var(--mute);
-      font-size: 13px;
     }
-    footer a { color: var(--mute); }
-    footer a:hover { color: var(--amber); }
+    .list li:first-child { padding-top: 0; }
+    .list li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .list strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .list span { flex-shrink: 0; font-size: 14px; }
+    .stack {
+      margin: 0;
+      color: var(--mute);
+    }
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--mute);
+      font-size: 14px;
+    }
+    @media (max-width: 520px) {
+      header { flex-direction: column; gap: 12px; }
+      .list li { flex-direction: column; gap: 2px; }
+    }
   </style>
 </head>
 <body>
-  <div class="scan" aria-hidden="true"></div>
   <div class="wrap">
     <header>
-      <div class="brand">Karthik / Reddy</div>
+      <div class="brand">Karthik Kumar Reddy V</div>
       <nav>
-        <a href="#work">Work</a>
-        <a href="#certs">Certs</a>
         <a href="https://github.com/karthikvkreddy">GitHub</a>
         <a href="https://huggingface.co/karthikreddyv">Hugging Face</a>
         <a href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
       </nav>
     </header>
 
-    <div class="hero">
-      <div>
-        <p class="kicker">SRE · Bengaluru <img src="images/wave.gif" alt=""></p>
-        <h1>I run production Kubernetes. I build tools for the 2am version of me.</h1>
-        <p class="lede">
-          I’m <strong>Karthik Kumar Reddy V</strong>, a Senior SRE at Visa in Bengaluru.
-          Previously Myntra and Airbus. I work on Kubernetes, AWS, Terraform, and reliability.
-        </p>
-        <div class="cta">
-          <a class="btn primary" href="https://github.com/karthikvkreddy">GitHub</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
-        </div>
-      </div>
-      <img class="hero-radar" src="images/radar.gif" alt="Radar scan animation">
-    </div>
+    <p class="kicker">SRE, Bengaluru</p>
+    <h1>I run production Kubernetes. I build tools for the 2am version of me.</h1>
+    <p class="lede">
+      I’m <strong>Karthik Kumar Reddy V</strong>, a Senior SRE at Visa.
+      Previously Myntra and Airbus. I work on Kubernetes, AWS, Terraform, and reliability.
+    </p>
 
     <section id="work">
-      <h2 class="h2-row">Work <img src="images/cat.gif" alt=""></h2>
-      <div class="panel work-block">
-        <div class="product-head">
-          <h3>ChangeRadar</h3>
-          <span class="tag">v0.2 public</span>
-        </div>
+      <h2>Work</h2>
+      <article class="item">
+        <h3>ChangeRadar</h3>
         <p>
-          Score a Kubernetes or Helm change against past incidents.
-          MiniLM embeddings, cosine ranking, a <code>helm diff</code> parser, and a public seed of 1,513 labeled cases.
-          Bring your own incident JSONL. No training required.
+          Score a Kubernetes or Helm change against past incidents using sentence embeddings.
+          A high score means the change looks like a known incident, not that it will page.
         </p>
-        <pre>helm diff upgrade checkout ./chart -f values-prod.yaml \
-  | python -m changeradar score-diff</pre>
-      </div>
-      <div class="grid">
-        <div class="card">
-          <h3>Live Space</h3>
-          <p>Runs MiniLM in the browser via Transformers.js. First load ~20MB, then local.</p>
-        </div>
-        <div class="card">
-          <h3>Public dataset</h3>
-          <p>RCAEval, Cloud-OpsBench, AnoMod labels. Not production dumps.</p>
-        </div>
-        <div class="card">
-          <h3>Honest metric</h3>
-          <p>Hit@k is lookalike ranking. Cosine is not P(outage).</p>
-        </div>
-      </div>
-      <p class="note">
-        <strong>A high score means “this looks like a known incident.”</strong>
-        It does not mean the change will page in production.
-      </p>
-      <div class="cta" style="margin-top:18px">
-        <a class="btn primary" href="https://huggingface.co/spaces/karthikreddyv/changeradar">Try it in the browser</a>
-        <a class="btn ghost" href="https://github.com/karthikvkreddy/changeradar">Code</a>
-        <a class="btn ghost" href="https://huggingface.co/datasets/karthikreddyv/changeradar-incidents">Dataset</a>
-      </div>
-
-      <div class="panel work-block">
-        <div class="product-head">
-          <h3>SRE / DevOps interview prep</h3>
-          <span class="tag">Topmate · 5.0</span>
-        </div>
+        <p class="links">
+          <a href="https://huggingface.co/spaces/karthikreddyv/changeradar">Demo</a>
+          ·
+          <a href="https://github.com/karthikvkreddy/changeradar">Code</a>
+          ·
+          <a href="https://huggingface.co/datasets/karthikreddyv/changeradar-incidents">Dataset</a>
+        </p>
+      </article>
+      <article class="item">
+        <h3>SRE / DevOps interview prep</h3>
         <p>
-          A 45 minute 1:1 for people preparing SRE and DevOps interviews.
-          Scenario questions on AWS, Linux, Kubernetes, and incidents.
-          How to structure answers, how to talk about trade-offs, and the mistakes that get people rejected.
+          A 45 minute 1:1 on Topmate. Scenario questions on AWS, Linux, Kubernetes, and incidents.
+          How to structure answers, and the mistakes that get people rejected.
         </p>
-        <div class="cta" style="margin-top:18px">
-          <a class="btn primary" href="https://topmate.io/karthikvk/1920474">Book on Topmate</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="stack">
-      <h2>Stack I actually use</h2>
-      <ul class="chips">
-        <li>Kubernetes</li>
-        <li>Helm</li>
-        <li>AWS EKS</li>
-        <li>Terraform</li>
-        <li>Python</li>
-        <li>Prometheus</li>
-        <li>Grafana</li>
-        <li>CI/CD</li>
-      </ul>
+        <p class="links">
+          <a href="https://topmate.io/karthikvk/1920474">Book on Topmate</a>
+        </p>
+      </article>
     </section>
 
     <section id="certs">
       <h2>Certifications</h2>
-      <div class="cert-grid">
-        <a class="cert" href="https://www.credly.com/badges/3ecbc234-6f5a-4739-87d7-67226936ceaf">
-          <span class="cert-mark k8s">CKA</span>
-          <div>
-            <h3>Certified Kubernetes Administrator</h3>
-            <p>The Linux Foundation · Apr 2022</p>
-          </div>
-        </a>
-        <div class="cert">
-          <span class="cert-mark aws">DVA</span>
-          <div>
-            <h3>AWS Certified Developer Associate</h3>
-            <p>Amazon Web Services · Aug 2024</p>
-          </div>
-        </div>
-      </div>
-      <ul class="chips more">
-        <li><a href="https://coursera.org/account/accomplishments/verify/4XN2TBJA8GTB">Machine Learning with Python · Coursera</a></li>
-        <li><a href="https://coursera.org/account/accomplishments/specialization/FSU5X2VB59SS">Introduction to Data Science · Coursera</a></li>
-        <li>Cloud Computing · NPTEL</li>
-        <li>Cloud Hero AI and ML · Qwiklabs</li>
+      <ul class="list">
+        <li>
+          <a href="https://www.credly.com/badges/3ecbc234-6f5a-4739-87d7-67226936ceaf"><strong>Certified Kubernetes Administrator</strong></a>
+          <span>Linux Foundation, 2022</span>
+        </li>
+        <li>
+          <strong>AWS Certified Developer Associate</strong>
+          <span>Amazon Web Services, 2024</span>
+        </li>
+        <li>
+          <a href="https://coursera.org/account/accomplishments/verify/4XN2TBJA8GTB"><strong>Machine Learning with Python</strong></a>
+          <span>Coursera</span>
+        </li>
+        <li>
+          <a href="https://coursera.org/account/accomplishments/specialization/FSU5X2VB59SS"><strong>Introduction to Data Science</strong></a>
+          <span>Coursera</span>
+        </li>
+        <li>
+          <strong>Cloud Computing</strong>
+          <span>NPTEL</span>
+        </li>
+        <li>
+          <strong>Cloud Hero AI and ML</strong>
+          <span>Qwiklabs</span>
+        </li>
       </ul>
     </section>
 
-    <section id="about" class="about">
-      <h2>Who</h2>
-      <p>
-        Senior SRE at <strong>Visa</strong>. Previously <strong>Myntra</strong> and <strong>Airbus</strong>,
-        on AWS EKS platforms. I ship the tools I wish I had at 2am.
-      </p>
-      <p>
-        Hugging Face:
-        <a href="https://huggingface.co/karthikreddyv">karthikreddyv</a>
-        · GitHub:
-        <a href="https://github.com/karthikvkreddy">karthikvkreddy</a>
-      </p>
+    <section>
+      <h2>Stack</h2>
+      <p class="stack">Kubernetes, Helm, AWS EKS, Terraform, Python, Prometheus, Grafana, CI/CD</p>
     </section>
 
     <footer>
-      <span>© <span id="y"></span> Karthik Kumar Reddy V</span>
-      <span>
-        <a href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
-        ·
-        <a href="https://topmate.io/karthikvk/1920474">Topmate</a>
-        ·
-        <a href="https://huggingface.co/spaces/karthikreddyv/changeradar">ChangeRadar</a>
-      </span>
+      <span id="y"></span> Karthik Kumar Reddy V
     </footer>
   </div>
   <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
