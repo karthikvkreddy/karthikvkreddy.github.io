@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Karthik Kumar Reddy V — ChangeRadar</title>
-  <meta name="description" content="Senior SRE building ChangeRadar: score Kubernetes and Helm diffs against past incidents with sentence embeddings. Retrieval, not outage prediction.">
+  <title>Karthik Kumar Reddy V</title>
+  <meta name="description" content="Senior SRE in Bengaluru. Kubernetes, AWS, Terraform, and reliability engineering.">
   <meta name="theme-color" content="#0b0d0c">
   <link rel="canonical" href="https://karthikvkreddy.github.io/">
-  <meta property="og:title" content="Karthik Kumar Reddy V — ChangeRadar">
-  <meta property="og:description" content="I retrieve the last outage that looks like your Helm diff.">
+  <meta property="og:title" content="Karthik Kumar Reddy V">
+  <meta property="og:description" content="Senior SRE in Bengaluru. Kubernetes, AWS, Terraform, and reliability engineering.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://karthikvkreddy.github.io/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -253,35 +253,34 @@
     <header>
       <div class="brand">Karthik / Reddy</div>
       <nav>
-        <a href="https://huggingface.co/spaces/karthikreddyv/changeradar">Demo</a>
-        <a href="https://github.com/karthikvkreddy/changeradar">GitHub</a>
+        <a href="https://github.com/karthikvkreddy">GitHub</a>
         <a href="https://huggingface.co/karthikreddyv">Hugging Face</a>
         <a href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
       </nav>
     </header>
 
-    <p class="kicker">SRE · open source · Bengaluru</p>
-    <h1>The Helm diff walks in. The last outage that looks like it walks out.</h1>
+    <p class="kicker">SRE · Bengaluru</p>
+    <h1>I run production Kubernetes. I build tools for the 2am version of me.</h1>
     <p class="lede">
-      I’m <strong>Karthik Kumar Reddy V</strong>. I build
-      <strong>ChangeRadar</strong> — embed a Kubernetes change, rank lookalike postmortems.
-      Retrieval, not prophecy.
+      I’m <strong>Karthik Kumar Reddy V</strong>, a Senior SRE at Visa in Bengaluru.
+      Previously Myntra and Airbus. I work on Kubernetes, AWS, Terraform, and reliability.
     </p>
     <div class="cta">
-      <a class="btn primary" href="https://huggingface.co/spaces/karthikreddyv/changeradar">Try it in the browser</a>
-      <a class="btn ghost" href="https://github.com/karthikvkreddy/changeradar">Read the code</a>
+      <a class="btn primary" href="https://github.com/karthikvkreddy">GitHub</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
     </div>
 
-    <section id="product">
-      <h2>ChangeRadar</h2>
+    <section id="work">
+      <h2>Work</h2>
       <div class="panel">
         <div class="product-head">
-          <h3>Score a K8s / Helm change against past incidents</h3>
+          <h3>ChangeRadar</h3>
           <span class="tag">v0.2 public</span>
         </div>
         <p>
+          Score a Kubernetes or Helm change against past incidents.
           MiniLM embeddings, cosine ranking, a <code>helm diff</code> parser, and a public seed of 1,513 labeled cases.
-          Bring your own incident JSONL — no training required.
+          Bring your own incident JSONL. No training required.
         </p>
         <pre>helm diff upgrade checkout ./chart -f values-prod.yaml \
   | python -m changeradar score-diff</pre>
@@ -293,7 +292,7 @@
         </div>
         <div class="card">
           <h3>Public dataset</h3>
-          <p>RCAEval, Cloud-OpsBench, AnoMod labels — not production dumps.</p>
+          <p>RCAEval, Cloud-OpsBench, AnoMod labels. Not production dumps.</p>
         </div>
         <div class="card">
           <h3>Honest metric</h3>
@@ -305,8 +304,9 @@
         It does not mean the change will page in production.
       </p>
       <div class="cta" style="margin-top:18px">
+        <a class="btn primary" href="https://huggingface.co/spaces/karthikreddyv/changeradar">Try it in the browser</a>
+        <a class="btn ghost" href="https://github.com/karthikvkreddy/changeradar">Code</a>
         <a class="btn ghost" href="https://huggingface.co/datasets/karthikreddyv/changeradar-incidents">Dataset</a>
-        <a class="btn ghost" href="https://github.com/karthikvkreddy/changeradar">github.com/karthikvkreddy/changeradar</a>
       </div>
     </section>
 
@@ -318,7 +318,6 @@
         <li>AWS EKS</li>
         <li>Terraform</li>
         <li>Python</li>
-        <li>sentence-transformers</li>
         <li>Prometheus</li>
         <li>Grafana</li>
         <li>CI/CD</li>
