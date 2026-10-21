@@ -1,280 +1,355 @@
 <!DOCTYPE html>
-<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
-
-   <!--- Basic Page Needs
-   ================================================== -->
-   <meta charset="utf-8">
-	<title>Porfolio</title>
-	<meta name="description" content="">
-	<meta name="author" content="Karthik">
-
-   <!-- Mobile Specific Metas
-   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<!-- CSS
-    ================================================== -->
-   <link rel="stylesheet" href="css/default.css">
-	<link rel="stylesheet" href="css/layout.css">
-   <link rel="stylesheet" href="css/media-queries.css">
-   <link rel="stylesheet" href="css/magnific-popup.css">
-
-   <!-- Script
-   ================================================== -->
-	<script src="js/modernizr.js"></script>
-
-   <!-- Favicons
-	================================================== -->
-	
-<meta name="google-site-verification" content="XOX4cYuBXkwE2rquQSUAXoX7fsJrRvdsiN4TlzZxe2o" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Karthik Kumar Reddy V — ChangeRadar</title>
+  <meta name="description" content="Senior SRE building ChangeRadar: score Kubernetes and Helm diffs against past incidents with sentence embeddings. Retrieval, not outage prediction.">
+  <meta name="theme-color" content="#0b0d0c">
+  <link rel="canonical" href="https://karthikvkreddy.github.io/">
+  <meta property="og:title" content="Karthik Kumar Reddy V — ChangeRadar">
+  <meta property="og:description" content="I retrieve the last outage that looks like your Helm diff.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://karthikvkreddy.github.io/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:opsz,wght@9..144,520;9..144,640&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b0d0c;
+      --panel: #121614;
+      --line: #2a332c;
+      --mute: #9aa89a;
+      --text: #e8eee6;
+      --amber: #e3b341;
+      --amber-dim: #c4922a;
+      --ok: #8fbf7a;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(227,179,65,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(227,179,65,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at 20% 0%, #000 20%, transparent 70%);
+      z-index: 0;
+    }
+    .scan {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 120px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent, rgba(227,179,65,.07), transparent);
+      animation: sweep 7s linear infinite;
+      z-index: 1;
+    }
+    @keyframes sweep {
+      from { transform: translateY(-20vh); }
+      to { transform: translateY(120vh); }
+    }
+    .wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 22px 80px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+    .brand {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    nav a {
+      color: var(--mute);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    nav a:hover { color: var(--text); }
+    .kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin: 0 0 18px;
+    }
+    h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 640;
+      font-size: clamp(2.1rem, 6vw, 4.1rem);
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      margin: 0 0 22px;
+      max-width: 14ch;
+    }
+    .lede {
+      font-size: 1.15rem;
+      color: var(--mute);
+      max-width: 42rem;
+      margin: 0 0 28px;
+    }
+    .lede strong { color: var(--text); font-weight: 500; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid transparent;
+    }
+    a.btn.primary {
+      background: var(--amber);
+      color: #16140c;
+    }
+    a.btn.ghost {
+      border-color: var(--line);
+      color: var(--text);
+      background: transparent;
+    }
+    a.btn.ghost:hover { border-color: var(--amber); color: var(--amber); }
+    section { margin-top: 72px; }
+    h2 {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.7rem;
+      font-weight: 520;
+      margin: 0 0 18px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+    }
+    .product-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .product-head h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .tag {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--ok);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+    .product-head p {
+      color: var(--mute);
+      margin: 10px 0 0;
+      max-width: 46rem;
+    }
+    pre {
+      margin: 18px 0 0;
+      padding: 14px 16px;
+      overflow-x: auto;
+      background: #0a0c0b;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: #d7e3cf;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+    .card p {
+      margin: 0;
+      color: var(--mute);
+      font-size: 14px;
+    }
+    .note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--amber);
+      color: var(--mute);
+      font-size: 14px;
+    }
+    .note strong { color: var(--text); }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .chips li {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+    .about p { color: var(--mute); max-width: 42rem; }
+    .about p strong { color: var(--text); font-weight: 500; }
+    footer {
+      margin-top: 80px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--mute);
+      font-size: 13px;
+    }
+    footer a { color: var(--mute); }
+    footer a:hover { color: var(--amber); }
+  </style>
 </head>
-
 <body>
+  <div class="scan" aria-hidden="true"></div>
+  <div class="wrap">
+    <header>
+      <div class="brand">Karthik / Reddy</div>
+      <nav>
+        <a href="https://huggingface.co/spaces/karthikreddyv/changeradar">Demo</a>
+        <a href="https://github.com/karthikvkreddy/changeradar">GitHub</a>
+        <a href="https://huggingface.co/karthikreddyv">Hugging Face</a>
+        <a href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
+      </nav>
+    </header>
 
-   <!-- Header
-   ================================================== -->
-   <header id="home">
+    <p class="kicker">SRE · open source · Bengaluru</p>
+    <h1>The Helm diff walks in. The last outage that looks like it walks out.</h1>
+    <p class="lede">
+      I’m <strong>Karthik Kumar Reddy V</strong>. I build
+      <strong>ChangeRadar</strong> — embed a Kubernetes change, rank lookalike postmortems.
+      Retrieval, not prophecy.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="https://huggingface.co/spaces/karthikreddyv/changeradar">Try it in the browser</a>
+      <a class="btn ghost" href="https://github.com/karthikvkreddy/changeradar">Read the code</a>
+    </div>
 
-      <nav id="nav-wrap">
-
-         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
-
-         <ul id="nav" class="nav">
-            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-            <li><a class="smoothscroll" href="#about">About</a></li>
-            <li><a class="smoothscroll" href="#resume">Projects</a></li>
-            <li><a class="smoothscroll" href="#blog">Blog</a></li>
-            <li><a class="smoothscroll" href="#contact">Contact</a></li>
-         </ul> <!-- end #nav -->
-
-      </nav> <!-- end #nav-wrap -->
-
-      <div class="row banner">
-         <div class="banner-text">
-            <h1 class="responsive-headline">I'm Karthik.</h1>
-            <h3>I am a tech enthusiast who always love to learn & explore new technologies & trends. Let's <a class="smoothscroll" href="#about">start scrolling</a>
-            and learn more <a class="smoothscroll" href="#about">about me</a>.</h3>
-            <hr />
-            <ul class="social">
-               <li><a href="https://www.linkedin.com/in/karthik-kumar-reddy-v/"><i class="fa fa-linkedin"></i></a></li>
-               <li><a href="https://www.instagram.com/_karthik_reddy_v_/"><i class="fa fa-instagram"></i></a></li>
-            
-            </ul>
-         </div>
-      </div>
-
-      <p class="scrolldown">
-         <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
-      </p>
-
-   </header> <!-- Header End -->
-
-
-   <!-- About Section
-   ================================================== -->
-   <section id="about">
-
-      <div class="row">
-
-         <div class="three columns">
-
-            <img class="profile-pic"  src="images/profilepic.jpg" alt="" />
-
-         </div>
-
-         <div class="nine columns main-col">
-
-            <h2>About Me</h2>
-
-            <p>I am Karthik Kumar Reddy, a computer science graduate from Dayananda Sagar College, Karnataka.currently ,working as a Software Development Intern in worderfull starup <b>DataGrokr</b> and I always interested in a taking challenge.
-            </p>
+    <section id="product">
+      <h2>ChangeRadar</h2>
+      <div class="panel">
+        <div class="product-head">
+          <div>
+            <h3>Score a K8s / Helm change against past incidents</h3>
             <p>
-               I believe mindfulness in the workplace is key to success - so I utilise my free time doing yoga, meditation, art & crafts, and painting.
+              MiniLM embeddings, cosine ranking, a <code>helm diff</code> parser, and a public seed of 1,513 labeled cases.
+              Bring your own incident JSONL — no training required.
             </p>
-
-            <div class="row">
-
-               <div class="columns contact-details">
-
-                  <h2>Contact Details</h2>
-                  <p class="address">
-						   <span>Karthik Kumar Reddy V</span><br>
-                     <span>reddykarthik958@gmail.com</span>
-					   </p>
-
-               </div>
-
-               <div class="columns download">
-                  <p>
-                     <a href="resume.pdf" class="button" download><i class="fa fa-download"></i>Download Resume</a>
-                  </p>
-
-               </div>
-
-            </div> <!-- end row -->
-
-         </div> <!-- end .main-col -->
-
-      </div>
-
-   </section> <!-- About Section End-->
-
-
-   <!-- Resume Section
-   ================================================== -->
-   <section id="resume">
-
-      <!-- Education
-      ----------------------------------------------- -->
-      <div class="row education">
-
-         <div class="three columns header-col">
-            <h1><span>My Projects</span></h1>
-         </div>
-
-         <div class="nine columns main-col">
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>A-START-TO-AWS_EKS</h3>
-                  <p class="info">A guide Project to learn and explore Kubernetes on AWS <span>&bull;</span> <em class="date">March 2020</em></p>
-
-                  <p>
-                     This is a guide which I made while learning kubernetes for beginners to get started with Kubernetes on AWS, provisioning EKS cluster and working with the cluster to deploy 
-                     different microservices. It emphasises on understanding all of the configurations (network, security, storage and so) and launching 
-                     them using Iaas (cloudformations, kubernetes yaml config templates). It consists of some of the Administration works like Autoscaling ,Monitoring and so on.
-                  </p>
-
-               </div>
-
-            </div> <!-- item end -->
-
-            <div class="row item">
-                  <p align="right"><span style="text-decoration: underline;"><a href= "https://github.com/karthikvkreddy/A_Start_to_EKS">See Code</a></span>&nbsp;&nbsp;</p>
-
-               <div class="twelve columns">
-
-                  <h3>Best classifier for Predicting Loan case</h3>
-                  <p class="info">Machine Learning Project <span>&bull;</span> <em class="date">Jan 2020</em></p>
-
-                  <p>
-
-                     The loan is one of the most important products of the banking, Insurance Company. 
-                     All the banks, Insurance Company are trying to figure out effective business strategies to 
-                     persuade customers to apply their loans. However, there are some customers behave negatively after their application are approved.
-                      To prevent this situation, banks have to find some methods to predict customer's behaviours.
-                       Machine learning algorithms have a pretty good performance on this purpose, which are widely-used by the banking. Here, Our team will work on loan behaviours prediction using machine learning models.
-</p>
-    <p>                 It is an interative notebook that drives from pre-processing the data till applying ML models.
-      <p align="right"><span style="text-decoration: underline;"><a href= "https://github.com/karthikvkreddy/Best_Classifier">See Code</a></span>&nbsp;&nbsp;</p>
-
-               </div>
-
-            </div> <!-- item end -->
-
-         </div> <!-- main-col end -->
-
-      </div> <!-- End Education -->
-
-
-      <!-- Work
-      ----------------------------------------------- -->
-     
-          
-    
- <!-- blog
-    ================================================== -->
-    <section id="blog" >
-
-      <div class="row education">
-
-        
-         <div class=" columns main-col">
-
-            <div class="row item">
-
-               <div class="columns">
-              
-              <center><h1>Check out My Blog Posts</h1></center>
-              <b><p >Coming Soon...!!!!</p>
           </div>
+          <span class="tag">v0.2 public</span>
+        </div>
+        <pre>helm diff upgrade checkout ./chart -f values-prod.yaml \
+  | python -m changeradar score-diff</pre>
       </div>
-
-      <div class="columns">
-          <div class="col-full">
-
-              <div class="blog-list block-1-2 block-tab-full">
-                  <article class="col-block">
-                              
-  <!--                     <div class="blog-date">
-                          <a href="blog-single.html">Sept 16, 2017</a>
-                      </div>  
-                      
-                      <h2 class="h01"><a href="blog-single.html">The 10 Golden Rules of Clean Simple Design.</a></h2>
-                      <p>
-                      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque in ipsum id orci porta dapibus. Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus nibh..
-                      </p>
-
-                     
--->
-                      
-                  </article>
-                  
-              </div> <!-- end blog-list -->
-
-          </div> <!-- end col-full -->
-          <a href="#">Read more...!!!</a>
-      </div> <!-- end blog-content -->
-
-  </section> <!-- end s-blog -->
-
-
-   <!-- footer
-   ================================================== -->
-
-   <section id="contact">
-   <footer>
-
-      <div class="row">
-
-         <div class="twelve columns">
-
-            <ul class="social-links">               
-               <li><a href="https://www.linkedin.com/in/karthik-kumar-reddy-v/"><i class="fa fa-linkedin"></i></a></li>
-               <li><a href="https://www.instagram.com/_karthik_reddy_v_/"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-
-            <ul class="copyright">
-               <li>&copy; Copyright karthik 2020 </li>
-               <li>Design by <a href="http://www.styleshout.com/" title="Styleshout" target="_blank">Styleshout</a></li>   
-            </ul>
-
-         </div>
-
-         <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
-
+      <div class="grid">
+        <div class="card">
+          <h3>Live Space</h3>
+          <p>Runs MiniLM in the browser via Transformers.js. First load ~20MB, then local.</p>
+        </div>
+        <div class="card">
+          <h3>Public dataset</h3>
+          <p>RCAEval, Cloud-OpsBench, AnoMod labels — not production dumps.</p>
+        </div>
+        <div class="card">
+          <h3>Honest metric</h3>
+          <p>Hit@k is lookalike ranking. Cosine is not P(outage).</p>
+        </div>
       </div>
+      <p class="note">
+        <strong>A high score means “this looks like a known incident.”</strong>
+        It does not mean the change will page in production.
+      </p>
+      <div class="cta" style="margin-top:18px">
+        <a class="btn ghost" href="https://huggingface.co/datasets/karthikreddyv/changeradar-incidents">Dataset</a>
+        <a class="btn ghost" href="https://github.com/karthikvkreddy/changeradar">github.com/karthikvkreddy/changeradar</a>
+      </div>
+    </section>
 
-   </footer> <!-- Footer End-->
-</section>
-   <!-- Java Script
-   ================================================== -->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
-   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    <section id="stack">
+      <h2>Stack I actually use</h2>
+      <ul class="chips">
+        <li>Kubernetes</li>
+        <li>Helm</li>
+        <li>AWS EKS</li>
+        <li>Terraform</li>
+        <li>Python</li>
+        <li>sentence-transformers</li>
+        <li>Prometheus</li>
+        <li>Grafana</li>
+        <li>CI/CD</li>
+      </ul>
+    </section>
 
-   <script src="js/jquery.flexslider.js"></script>
-   <script src="js/waypoints.js"></script>
-   <script src="js/jquery.fittext.js"></script>
-   <script src="js/magnific-popup.js"></script>
-   <script src="js/init.js"></script>
+    <section id="about" class="about">
+      <h2>Who</h2>
+      <p>
+        Senior SRE at <strong>Visa</strong>. Previously <strong>Myntra</strong> and <strong>Airbus</strong>,
+        on AWS EKS platforms. CKA. AWS Certified Developer – Associate.
+        I ship the tools I wish I had at 2am.
+      </p>
+      <p>
+        Hugging Face:
+        <a href="https://huggingface.co/karthikreddyv">karthikreddyv</a>
+        · GitHub:
+        <a href="https://github.com/karthikvkreddy">karthikvkreddy</a>
+      </p>
+    </section>
 
+    <footer>
+      <span>© <span id="y"></span> Karthik Kumar Reddy V</span>
+      <span>
+        <a href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
+        ·
+        <a href="https://huggingface.co/spaces/karthikreddyv/changeradar">ChangeRadar</a>
+      </span>
+    </footer>
+  </div>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
-
 </html>
