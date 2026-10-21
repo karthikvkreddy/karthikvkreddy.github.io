@@ -96,6 +96,28 @@
       color: var(--amber);
       margin: 0 0 18px;
     }
+    .kicker img {
+      height: 22px;
+      width: 22px;
+      vertical-align: -5px;
+      margin-left: 8px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr minmax(150px, 230px);
+      gap: 28px;
+      align-items: center;
+    }
+    .hero-radar {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #070807;
+    }
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-radar { max-width: 200px; }
+    }
     h1 {
       font-family: "Fraunces", Georgia, serif;
       font-weight: 640;
@@ -141,6 +163,46 @@
       font-weight: 520;
       margin: 0 0 18px;
     }
+    .h2-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .h2-row img { height: 40px; width: auto; }
+    .work-block + .work-block { margin-top: 16px; }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+    }
+    a.cert, .cert {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    a.cert:hover { border-color: var(--amber); }
+    .cert-mark {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      letter-spacing: .04em;
+      min-width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .cert-mark.k8s { background: #326ce5; color: #fff; }
+    .cert-mark.aws { background: #ff9900; color: #16140c; }
+    .cert h3 { margin: 0 0 4px; font-size: 15px; }
+    .cert p { margin: 0; color: var(--mute); font-size: 13px; }
+    .more { margin-top: 14px; }
     .panel {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -230,6 +292,8 @@
       border-radius: 999px;
       padding: 6px 10px;
     }
+    .chips a { color: inherit; text-decoration: none; }
+    .chips a:hover { color: var(--amber); }
     .about p { color: var(--mute); max-width: 42rem; }
     .about p strong { color: var(--text); font-weight: 500; }
     footer {
@@ -253,26 +317,33 @@
     <header>
       <div class="brand">Karthik / Reddy</div>
       <nav>
+        <a href="#work">Work</a>
+        <a href="#certs">Certs</a>
         <a href="https://github.com/karthikvkreddy">GitHub</a>
         <a href="https://huggingface.co/karthikreddyv">Hugging Face</a>
         <a href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
       </nav>
     </header>
 
-    <p class="kicker">SRE · Bengaluru</p>
-    <h1>I run production Kubernetes. I build tools for the 2am version of me.</h1>
-    <p class="lede">
-      I’m <strong>Karthik Kumar Reddy V</strong>, a Senior SRE at Visa in Bengaluru.
-      Previously Myntra and Airbus. I work on Kubernetes, AWS, Terraform, and reliability.
-    </p>
-    <div class="cta">
-      <a class="btn primary" href="https://github.com/karthikvkreddy">GitHub</a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
+    <div class="hero">
+      <div>
+        <p class="kicker">SRE · Bengaluru <img src="images/wave.gif" alt=""></p>
+        <h1>I run production Kubernetes. I build tools for the 2am version of me.</h1>
+        <p class="lede">
+          I’m <strong>Karthik Kumar Reddy V</strong>, a Senior SRE at Visa in Bengaluru.
+          Previously Myntra and Airbus. I work on Kubernetes, AWS, Terraform, and reliability.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/karthikvkreddy">GitHub</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
+        </div>
+      </div>
+      <img class="hero-radar" src="images/radar.gif" alt="Radar scan animation">
     </div>
 
     <section id="work">
-      <h2>Work</h2>
-      <div class="panel">
+      <h2 class="h2-row">Work <img src="images/cat.gif" alt=""></h2>
+      <div class="panel work-block">
         <div class="product-head">
           <h3>ChangeRadar</h3>
           <span class="tag">v0.2 public</span>
@@ -308,6 +379,21 @@
         <a class="btn ghost" href="https://github.com/karthikvkreddy/changeradar">Code</a>
         <a class="btn ghost" href="https://huggingface.co/datasets/karthikreddyv/changeradar-incidents">Dataset</a>
       </div>
+
+      <div class="panel work-block">
+        <div class="product-head">
+          <h3>SRE / DevOps interview prep</h3>
+          <span class="tag">Topmate · 5.0</span>
+        </div>
+        <p>
+          A 45 minute 1:1 for people preparing SRE and DevOps interviews.
+          Scenario questions on AWS, Linux, Kubernetes, and incidents.
+          How to structure answers, how to talk about trade-offs, and the mistakes that get people rejected.
+        </p>
+        <div class="cta" style="margin-top:18px">
+          <a class="btn primary" href="https://topmate.io/karthikvk/1920474">Book on Topmate</a>
+        </div>
+      </div>
     </section>
 
     <section id="stack">
@@ -324,12 +410,37 @@
       </ul>
     </section>
 
+    <section id="certs">
+      <h2>Certifications</h2>
+      <div class="cert-grid">
+        <a class="cert" href="https://www.credly.com/badges/3ecbc234-6f5a-4739-87d7-67226936ceaf">
+          <span class="cert-mark k8s">CKA</span>
+          <div>
+            <h3>Certified Kubernetes Administrator</h3>
+            <p>The Linux Foundation · Apr 2022</p>
+          </div>
+        </a>
+        <div class="cert">
+          <span class="cert-mark aws">DVA</span>
+          <div>
+            <h3>AWS Certified Developer Associate</h3>
+            <p>Amazon Web Services · Aug 2024</p>
+          </div>
+        </div>
+      </div>
+      <ul class="chips more">
+        <li><a href="https://coursera.org/account/accomplishments/verify/4XN2TBJA8GTB">Machine Learning with Python · Coursera</a></li>
+        <li><a href="https://coursera.org/account/accomplishments/specialization/FSU5X2VB59SS">Introduction to Data Science · Coursera</a></li>
+        <li>Cloud Computing · NPTEL</li>
+        <li>Cloud Hero AI and ML · Qwiklabs</li>
+      </ul>
+    </section>
+
     <section id="about" class="about">
       <h2>Who</h2>
       <p>
         Senior SRE at <strong>Visa</strong>. Previously <strong>Myntra</strong> and <strong>Airbus</strong>,
-        on AWS EKS platforms. CKA. AWS Certified Developer Associate.
-        I ship the tools I wish I had at 2am.
+        on AWS EKS platforms. I ship the tools I wish I had at 2am.
       </p>
       <p>
         Hugging Face:
@@ -343,6 +454,8 @@
       <span>© <span id="y"></span> Karthik Kumar Reddy V</span>
       <span>
         <a href="https://www.linkedin.com/in/karthik-kumar-reddy-v">LinkedIn</a>
+        ·
+        <a href="https://topmate.io/karthikvk/1920474">Topmate</a>
         ·
         <a href="https://huggingface.co/spaces/karthikreddyv/changeradar">ChangeRadar</a>
       </span>
