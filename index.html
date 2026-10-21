@@ -151,12 +151,17 @@
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      align-items: flex-start;
+      align-items: center;
       flex-wrap: wrap;
     }
     .product-head h3 {
       margin: 0;
       font-size: 1.2rem;
+    }
+    .panel > p {
+      color: var(--mute);
+      margin: 10px 0 0;
+      max-width: 46rem;
     }
     .tag {
       font-family: "IBM Plex Mono", monospace;
@@ -167,11 +172,7 @@
       background: var(--ok);
       padding: 4px 8px;
       border-radius: 999px;
-    }
-    .product-head p {
-      color: var(--mute);
-      margin: 10px 0 0;
-      max-width: 46rem;
+      flex-shrink: 0;
     }
     pre {
       margin: 18px 0 0;
@@ -275,15 +276,13 @@
       <h2>ChangeRadar</h2>
       <div class="panel">
         <div class="product-head">
-          <div>
-            <h3>Score a K8s / Helm change against past incidents</h3>
-            <p>
-              MiniLM embeddings, cosine ranking, a <code>helm diff</code> parser, and a public seed of 1,513 labeled cases.
-              Bring your own incident JSONL — no training required.
-            </p>
-          </div>
+          <h3>Score a K8s / Helm change against past incidents</h3>
           <span class="tag">v0.2 public</span>
         </div>
+        <p>
+          MiniLM embeddings, cosine ranking, a <code>helm diff</code> parser, and a public seed of 1,513 labeled cases.
+          Bring your own incident JSONL — no training required.
+        </p>
         <pre>helm diff upgrade checkout ./chart -f values-prod.yaml \
   | python -m changeradar score-diff</pre>
       </div>
