@@ -63,6 +63,29 @@
       color: var(--mute);
       font-size: 14px;
       letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kicker img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+    h2, .item h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2 img, .item h3 img {
+      width: 22px;
+      height: 22px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .emoji {
+      font-size: 1em;
+      line-height: 1;
     }
     h1 {
       font-family: "Fraunces", Georgia, serif;
@@ -159,17 +182,17 @@
       </nav>
     </header>
 
-    <p class="kicker">SRE, Bengaluru</p>
-    <h1>I run production Kubernetes. I build tools for the 2am version of me.</h1>
+    <p class="kicker"><img src="images/wave.gif" alt=""> SRE, Bengaluru</p>
+    <h1>I run production Kubernetes. I build tools for the 2am version of me. 🌙</h1>
     <p class="lede">
       I’m <strong>Karthik Kumar Reddy V</strong>, a Senior SRE at Visa.
       Previously Myntra and Airbus. I work on Kubernetes, AWS, Terraform, and reliability.
     </p>
 
     <section id="work">
-      <h2>Work</h2>
+      <h2><img src="images/radar.gif" alt=""> Work</h2>
       <article class="item">
-        <h3>ChangeRadar</h3>
+        <h3><span class="emoji">📡</span> ChangeRadar</h3>
         <p>
           Score a Kubernetes or Helm change against past incidents using sentence embeddings.
           A high score means the change looks like a known incident, not that it will page.
@@ -183,7 +206,7 @@
         </p>
       </article>
       <article class="item">
-        <h3>SRE / DevOps interview prep</h3>
+        <h3><span class="emoji">🎯</span> SRE / DevOps interview prep</h3>
         <p>
           A 45 minute 1:1 on Topmate. Scenario questions on AWS, Linux, Kubernetes, and incidents.
           How to structure answers, and the mistakes that get people rejected.
@@ -195,7 +218,7 @@
     </section>
 
     <section id="certs">
-      <h2>Certifications</h2>
+      <h2><span class="emoji">🏅</span> Certifications</h2>
       <ul class="list">
         <li>
           <a href="https://www.credly.com/badges/3ecbc234-6f5a-4739-87d7-67226936ceaf"><strong>Certified Kubernetes Administrator</strong></a>
@@ -225,7 +248,7 @@
     </section>
 
     <section>
-      <h2>Stack</h2>
+      <h2><img src="images/cat.gif" alt=""> Stack</h2>
       <p class="stack">Kubernetes, Helm, AWS EKS, Terraform, Python, Prometheus, Grafana, CI/CD</p>
     </section>
 
